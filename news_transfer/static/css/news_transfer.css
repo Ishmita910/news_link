@@ -5,6 +5,9 @@
 /***********************************************/
 /* HTML tag styles                             */
 /***********************************************/
+.pt-3-half {
+padding-top: 1.4rem;
+}
 
 body{
 	font-family: Arial,sans-serif;

@@ -1,5 +1,5 @@
 from flask import Flask,render_template
-import tablib
+# import tablib
 # from string import rstrip
 
 
@@ -15,9 +15,9 @@ def index():
     #TP2M_content= tablib.Dataset()
     
     with open("TP2M_status.txt", "r") as file:
-        #TP2M_content.csv=file.read()
-        #TP2M_content = file.readlines()
-        #TP2M_content.html
+        TP2M_content=file.read()
+        TP2M_content = file.readlines()
+
 
         TP2M_content=str(TP2M_content)
         TP2M_content = TP2M_content.replace(",", "<br>")

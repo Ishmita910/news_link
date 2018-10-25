@@ -5,201 +5,57 @@
 // alex.proussevitch@unh.edu
 //*****************************************************************************
 
-// $(function() {
-//
-//   var simID		= '',
-//       CGI	 	= '../../../cgi-bin/news_link/',
-//       URL_set_status	= '../../../cgi-bin/set_status.py?',
-//       renameDialog_tp2m	= $( "#dialog-rename-tp2m" ),
-//       renameDialog_reeds= $( "#dialog-rename-reeds"),
-//       listDialog	= $( "#dialog-list" ),
-//       checkTmOut	= null,
-//       checkInterval	= 1000*3600*1000,		// in milliseconds
-//       oldID	  = '',
-//       selID	  = '';
-//
-//   $(document).ready(function () {
-//
-// 		// Check status function at load
-// 	get_log('TP2M', 0,0,0);
-// 	get_log('ReEDS',0,0,0);
-//
-// 		// Check status function at interval
-//
-// 	checkTmOut = setInterval( function() {
-// 	  // get_log('TP2M', 0,0,0);
-// 	  // get_log('ReEDS',0,0,0);
-//		
-// 	  init()
-//
-// 	}, checkInterval);
-//
-// 		// Click functions
-// 	$( "#simulationLog-tp2m" ).on("click", "a.refresh-log", function(event) {
-// 		event.preventDefault();
-// 		get_log('TP2M', 0,0,0);
-// 	});
-//
-// 	$( "#simulationLog-reeds" ).on("click", "a.refresh-log", function(event) {
-// 		event.preventDefault();
-// 		get_log('ReEDS',0,0,0);
-// 	});
-//
-// 	$( "#simulationLog-tp2m" ).on("click", "a.listSet", function(event) {
-// 		event.preventDefault();
-// 		var sid  = $(this).attr('simID');
-// 		get_list('TP2M', sid);
-// 	});
-//
-// 	$( "#simulationLog-reeds" ).on("click", "a.listSet", function(event) {
-// 		event.preventDefault();
-// 		var sid  = $(this).attr('simID');
-// 		get_list('ReEDS', sid);
-// 	});
-//
-// 	$( "#simulationLog-tp2m" ).on("click", "a.moveSet", function(event) {
-// 		event.preventDefault();
-// 		var sid  = $(this).attr('simID');
-// 		var move = $(this).attr('action');
-// 		get_log('TP2M',0, sid, move);
-// 	});
-//
-// 	$( "#simulationLog-reeds" ).on("click", "a.moveSet", function(event) {
-// 		event.preventDefault();
-// 		var sid  = $(this).attr('simID');
-// 		var move = $(this).attr('action');
-// 		get_log('ReEDS',0, sid, move);
-// 	});
-//
-// 	$( "#simulationLog-tp2m" ).on("click", "a.renameSet", function(event) {
-// 		event.preventDefault();
-// 		oldID = $(this).attr('simID');
-// 		renameDialog_tp2m.dialog( "open" );
-// 	});
-//
-// 	$( "#simulationLog-reeds" ).on("click", "a.renameSet", function(event) {
-// 		event.preventDefault();
-// 		oldID = $(this).attr('simID');
-// 		renameDialog_reeds.dialog( "open" );
-// 	});
-//
-//         $( "#simulationLog-tp2m" ).on("click", "a.removeSet", function(event) {
-// 		var sid = $(this).attr('simID');
-// 		if (confirm("Please, confirm to remove this dataset-\n\""+sid+"\"")) {
-// 			get_log('TP2M',sid,0,0);
-// 		}
-// 	});
-//
-// 	$( "#simulationLog-reeds" ).on("click", "a.removeSet", function(event) {
-// 		event.preventDefault();
-// 		var sid = $(this).attr('simID');
-// 		if (confirm("Please, confirm to remove this dataset-\n\""+sid+"\"")) {
-// 			get_log('ReEDS',sid,0,0);
-// 		}
-// 	});
-//
-//   });
-//
-//   //////////	Rename simulation dialog
-//   renameDialog_tp2m.dialog({
-// 	autoOpen: false,
-// 	modal: true,
-// 	buttons: {
-// 	  Rename: function() {
-// 		var msg = 'Input for simulation ID ';
-// 		var newID = $( "#newname-tp2m" ).val();
-// 		newID = validateString($( "#controls input[name=simID]" ),'New ID ',newID,4,24);
-// 		if (newID) {
-// 			get_log( 'TP2M', oldID, newID, 0 );
-// 			$( "#newname-tp2m" ).val('');
-// 			$( this ).dialog( "close" );
-// 		}
-// 	  },
-// 	  Cancel: function() {
-// 		$( "#newname" ).val('');
-// 		$( this ).dialog( "close" );
-// 	  }
-// 	}
-//   });
-//
-//   renameDialog_reeds.dialog({
-// 	autoOpen: false,
-// 	modal: true,
-// 	buttons: {
-// 	  Rename: function() {
-// 		var msg = 'Input for simulation ID ';
-// 		var newID = $( "#newname-reeds" ).val();
-// 		newID = validateString($( "#controls input[name=simID]" ),'New ID ',newID,4,24);
-// 		if (newID) {
-// 			get_log( 'ReEDS', oldID, newID, 0 );
-// 			$( "#newname-reeds" ).val('');
-// 			$( this ).dialog( "close" );
-// 		}
-// 	  },
-// 	  Cancel: function() {
-// 		$( "#newname" ).val('');
-// 		$( this ).dialog( "close" );
-// 	  }
-// 	}
-//   });
-//
-//   function validateString(inpt,msg,val,min,max) {
-// 	if (!val.length) {
-// 		alert(msg + 'is empty');
-// 		inpt.focus(); return false;
-// 	}
-// 	val = val.replace(/\s/g,'_');		// replace spaces
-// 	if (!val.match(/^[\w-\.]+$/i)) {
-// 		alert(msg + 'is not alpha-numeric');
-//                 inpt.focus(); return false;
-// 	}
-// 	if (val.length < min || val.length > max) {
-// 		alert(msg + 'is outside of allowed length range ('+min+','+max+')');
-// 		inpt.focus(); return false;
-// 	}
-// 	return val;
-//   }
-//
-//   //////////	File List dialog
-//   listDialog.dialog({
-// 	autoOpen: false,
-// 	width: 520,
-// 	modal: true,
-// 	buttons: {
-// 	  Close: function() {
-// 		$( this ).dialog( "close" );
-// 	  }
-// 	}
-//   });
-//
-//   /////////////////////////////////////
-//   //////////	Log Table Functions
-//
-//   function get_log(rSet,remID,newID,move) {
-//     var url = CGI+'get_log.py?set='+rSet+'&remove='+remID+'&newname='+newID+'&move='+move;
-//     $.get( url, function(data) {
-// 	//debugger;
-// 	$( "#simulationLog-"+rSet.toLowerCase() ).html(data);
-// 	if (newID || move) {
-// 		if (newID) selID = newID;
-// 		$( 'td[class="cell_normal_blue '+selID+'"]').attr('class','cell_normal_blue_sel '+selID);
-// 		$( 'td[class="cell_normal_tan ' +selID+'"]').attr('class','cell_normal_tan_sel ' +selID);
-// 	}
-//     });
-//   }
-//
-//   function get_list(rSet,setID) {
-//     var url = CGI+'get_log.py?set='+rSet+'&list='+setID;
-//     $.get( url, function(data) {
-// 	listDialog.html(data);
-// 	listDialog.dialog('option', 'title', 'List of Files in '+rSet+'/'+setID+'/');;
-// 	listDialog.dialog( "open" );
-// 		$( 'td[class="cell_normal_blue_sel '+selID+'"]').attr('class','cell_normal_blue ' +selID);
-// 		$( 'td[class="cell_normal_tan_sel ' +selID+'"]').attr('class','cell_normal_tan '  +selID);
-// 		selID = setID;
-// 		$( 'td[class="cell_normal_blue '+selID+'"]').attr('class','cell_normal_blue_sel '+selID);
-// 		$( 'td[class="cell_normal_tan ' +selID+'"]').attr('class','cell_normal_tan_sel ' +selID);
-//     });
-//   }
-//
-// });
+var $TABLE = $('#table');
+var $BTN = $('#export-btn');
+var $EXPORT = $('#export');
+
+$('.table-add').click(function () {
+var $clone = $TABLE.find('tr.hide').clone(true).removeClass('hide table-line');
+$TABLE.find('table').append($clone);
+});
+
+$('.table-remove').click(function () {
+$(this).parents('tr').detach();
+});
+
+$('.table-up').click(function () {
+var $row = $(this).parents('tr');
+if ($row.index() === 1) return; // Don't go above the header
+$row.prev().before($row.get(0));
+});
+
+$('.table-down').click(function () {
+var $row = $(this).parents('tr');
+$row.next().after($row.get(0));
+});
+
+// A few jQuery helpers for exporting only
+jQuery.fn.pop = [].pop;
+jQuery.fn.shift = [].shift;
+
+$BTN.click(function () {
+var $rows = $TABLE.find('tr:not(:hidden)');
+var headers = [];
+var data = [];
+
+// Get the headers (add special header logic here)
+$($rows.shift()).find('th:not(:empty)').each(function () {
+headers.push($(this).text().toLowerCase());
+});
+
+// Turn all existing rows into a loopable array
+$rows.each(function () {
+var $td = $(this).find('td');
+var h = {};
+
+// Use the headers from earlier to name our hash keys
+headers.forEach(function (header, i) {
+h[header] = $td.eq(i).text();
+});
+
+data.push(h);
+});
+
+// Output the result
+$EXPORT.text(JSON.stringify(data));
+});
