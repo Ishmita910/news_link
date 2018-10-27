@@ -1,6 +1,4 @@
 from flask import Flask,render_template
-# import tablib
-# from string import rstrip
 
 
 app = Flask(__name__)
@@ -12,15 +10,14 @@ def flaggingScript():
 
 @app.route('/')
 def index():
-    #TP2M_content= tablib.Dataset()
     
-    with open("TP2M_status.txt", "r") as file:
-        TP2M_content=file.read()
-        TP2M_content = file.readlines()
+    with open('TP2M_status.txt', 'r') as TP2M_content:
+        TP2M_content=TP2M_content.read().replace('\n', ' ')
+        TP2M_content = TP2M_content.replace('\t', ' ')
+        TP2M_content=TP2M_content.split()
+        print(TP2M_content)
 
 
-        TP2M_content=str(TP2M_content)
-        TP2M_content = TP2M_content.replace(",", "<br>")
 
         html_TP2M_content = '''
         <table class="table_top">
@@ -33,18 +30,22 @@ def index():
             <th style="width:  5%" class="cell_header_blue">Move</th>
             <th style="width: 10%" class="cell_header_blue">Action</th>
             <th style="width: 15%" class="cell_header_blue">Date Uploaded</th>
-            <th style="width: 15%" class="cell_header_blue">IP</th>
+            <th style="width: 15%" class="cell_header_blue">I P</th>
             <th style="width: 20%" class="cell_header_blue">Host</th>
           </tr>
         _ROWS_
         </table>
         '''
-        html_TP2M_content +=TP2M_content
-    with open("ReEDS_status.txt", "r") as file:
-        ReEDS_content = file.readlines()
-        ReEDS_content=str(ReEDS_content)
-       
-        ReEDS_content = ReEDS_content.replace(",", "<br>")
+
+    with open('ReEDS_status.txt', 'r') as ReEDS_content:
+        ReEDS_content=ReEDS_content.read().replace('\n', ' ')
+        ReEDS_content = ReEDS_content.replace('\t', ' ')
+        ReEDS_content=ReEDS_content.split()
+        print(ReEDS_content)
+
+
+
+
         html_ReEDS_content = '''
         <table class="table_top">
           <tr>
@@ -62,8 +63,8 @@ def index():
         _ROWS_
         </table>
         '''
-        html_ReEDS_content +=ReEDS_content
-    return render_template('index.html',**locals())
+
+    return render_template('index.html',ReEDS_content=ReEDS_content,TP2M_content=TP2M_content,html_ReEDS_content=html_ReEDS_content)
 
 
 
