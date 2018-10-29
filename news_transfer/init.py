@@ -15,7 +15,13 @@ def index():
         TP2M_content=TP2M_content.read().replace('\n', ' ')
         TP2M_content = TP2M_content.replace('\t', ' ')
         TP2M_content=TP2M_content.split()
-        print(TP2M_content)
+
+        TP2M_content_list1 = TP2M_content[1:8]
+        TP2M_content_list2 = TP2M_content[9:16]
+        TP2M_content_list3 = TP2M_content[17:24]
+        TP2M_content_list4 = TP2M_content[25:32]
+
+
 
 
 
@@ -41,11 +47,11 @@ def index():
         ReEDS_content=ReEDS_content.read().replace('\n', ' ')
         ReEDS_content = ReEDS_content.replace('\t', ' ')
         ReEDS_content=ReEDS_content.split()
-        print(ReEDS_content)
 
-
-
-
+        ReEDS_content_list1=ReEDS_content[1:8]
+        ReEDS_content_list2 = ReEDS_content[9:16]
+        ReEDS_content_list3= ReEDS_content[17:24]
+        ReEDS_content_list4 = ReEDS_content[25:32]
         html_ReEDS_content = '''
         <table class="table_top">
           <tr>
@@ -64,7 +70,7 @@ def index():
         </table>
         '''
 
-    return render_template('index.html',ReEDS_content=ReEDS_content,TP2M_content=TP2M_content,html_ReEDS_content=html_ReEDS_content)
+    return render_template('index.html',ReEDS_content_list1=ReEDS_content_list1,ReEDS_content_list2=ReEDS_content_list2,ReEDS_content_list3=ReEDS_content_list3,ReEDS_content_list4=ReEDS_content_list4,TP2M_content_list1=TP2M_content_list1,TP2M_content_list2=TP2M_content_list2,TP2M_content_list3=TP2M_content_list3,TP2M_content_list4=TP2M_content_list4,html_ReEDS_content=html_ReEDS_content)
 
 
 

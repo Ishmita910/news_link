@@ -41,22 +41,20 @@
 		</tr>
 	</table>
 	</div>
-	<div id="title" style="margin: 25px; width: inherit; font-size: x-large; font-weight: bold; text-align: center;">
-		Model Output Transfer Console</div>
+{#	<div id="title" style="margin: 25px; width: inherit; font-size: x-large; font-weight: bold; text-align: center;">#}
+{#		Model Output Transfer Console</div>#}
 	<div> {% autoescape off %}{{ html_TP2M_content }}{% endautoescape %}</div>
 	<br>
 	<div> {% autoescape off %}{{ TP2M_content }}{% endautoescape %}</div>
 
-	<div id="simulationLog-tp2m"  style="font-size: 10pt;">Sasha</div>
-	<br />
-	<div id="simulationLog-reeds" style="font-size: 10pt;">Alex</div>
+
 
 
 
 {# Editable content#}
     <!-- Editable table -->
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Model Output Transfer Console</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Model Output Transfer Console TP2M</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
@@ -64,23 +62,22 @@
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
           <th class="text-center">Simulation ID</th>
-          <th class="text-center">Action</th>
+          <th class="text-center"></th>
           <th class="text-center">Date Uploaded</th>
+          <th class="text-center"></th>
           <th class="text-center">IP</th>
-          <th class="text-center">Host</th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
           <th class="text-center">Move</th>
           <th class="text-center">Remove</th>
         </tr>
         <tr>
-            {% for TP2M_content_element in TP2M_content %}
+            {% for TP2M_content_element in TP2M_content_list1 %}
+
                 <td class="pt-3-half" contenteditable="true">{{ TP2M_content_element }}</td>
 
             {% endfor %}
-          <td class="pt-3-half" contenteditable="true">{{ TP2M_content[1] }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ TP2M_content[2] }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ TP2M_content[3] }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ TP2M_content[4] }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ TP2M_content[5] }}</td>
+
 
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" ></i></a></span>
@@ -93,11 +90,12 @@
         </tr>
         <!-- This is our clonable table line -->
         <tr>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_SimulationId_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Action_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_DateUploaded_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Ip_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Host_2 }}</td>
+            {% for TP2M_content_element in TP2M_content_list2 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ TP2M_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -109,11 +107,12 @@
         </tr>
         <!-- This is our clonable table line -->
         <tr>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_SimulationId_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Action_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_DateUploaded_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Ip_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Host_3 }}</td>
+            {% for TP2M_content_element in TP2M_content_list3 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ TP2M_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -125,11 +124,12 @@
         </tr>
         <!-- This is our clonable table line -->
         <tr class="hide">
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_SimulationId_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Action_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_DateUploaded_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Ip_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_TP2M_content_Host_4 }}</td>
+            {% for TP2M_content_element in TP2M_content_list4 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ TP2M_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -147,7 +147,7 @@
 {# Editable content#}
     <!-- Editable table -->
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Model Output Transfer Console</h3>
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Model Output Transfer Console ReEDS</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
@@ -155,19 +155,22 @@
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
           <th class="text-center">Simulation ID</th>
-          <th class="text-center">Action</th>
+          <th class="text-center"></th>
           <th class="text-center">Date Uploaded</th>
+          <th class="text-center"></th>
           <th class="text-center">IP</th>
-          <th class="text-center">Host</th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
           <th class="text-center">Move</th>
           <th class="text-center">Remove</th>
         </tr>
         <tr>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_SimulationId_1 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Action_1 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_DateUploaded_1 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Ip_1 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Host_1 }}</td>
+            {% for ReEDS_content_element in ReEDS_content_list1 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ ReEDS_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" ></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -179,11 +182,12 @@
         </tr>
         <!-- This is our clonable table line -->
         <tr>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_SimulationId_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Action_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_DateUploaded_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Ip_2 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Host_2 }}</td>
+            {% for ReEDS_content_element in ReEDS_content_list2 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ ReEDS_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -195,11 +199,12 @@
         </tr>
         <!-- This is our clonable table line -->
         <tr>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_SimulationId_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Action_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_DateUploaded_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Ip_3 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Host_3 }}</td>
+            {% for ReEDS_content_element in ReEDS_content_list3 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ ReEDS_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -211,11 +216,12 @@
         </tr>
         <!-- This is our clonable table line -->
         <tr class="hide">
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_SimulationId_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Action_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_DateUploaded_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Ip_4 }}</td>
-          <td class="pt-3-half" contenteditable="true">{{ html_ReEDS_content_Host_4 }}</td>
+            {% for ReEDS_content_element in ReEDS_content_list4 %}
+
+                <td class="pt-3-half" contenteditable="true">{{ ReEDS_content_element }}</td>
+
+            {% endfor %}
+
           <td class="pt-3-half">
             <span class="table-up"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a></span>
             <span class="table-down"><a href="#!" class="indigo-text"><i class="fa fa-long-arrow-down"
@@ -243,16 +249,18 @@
 
 <!--		Pop-up DIV elements -->
 
-<div id="dialog-rename-tp2m" title="Rename Simulation" style="text-align: center">
-	<p style="margin-bottom:10px">Enter new name for this simulation</p>
-	<input id="newname-tp2m" size="12" type="text" value='' />
-</div>
-<div id="dialog-rename-reeds" title="Rename Simulation" style="text-align: center">
-	<p style="margin-bottom:10px">Enter new name for this simulation</p>
-	<input id="newname-reeds" size="12" type="text" value='' />
-</div>
-<div id="dialog-list"  title="List of Files" style="text-align: left"></div>
-
+{#<div id="dialog-rename-tp2m" title="Rename Simulation" style="text-align: center">#}
+{#	<p style="margin-bottom:10px">Enter new name for this simulation</p>#}
+{#	<input id="newname-tp2m" size="12" type="text" value='' />#}
+{#</div>#}
+{#<div id="dialog-rename-reeds" title="Rename Simulation" style="text-align: center">#}
+{#	<p style="margin-bottom:10px">Enter new name for this simulation</p>#}
+{#	<input id="newname-reeds" size="12" type="text" value='' />#}
+{#</div>#}
+{#<div id="dialog-list"  title="List of Files" style="text-align: left"></div>#}
+<div id="simulationLog-tp2m"  style="font-size: 10pt;">Sasha</div>
+	<br />
+	<div id="simulationLog-reeds" style="font-size: 10pt;">Alex</div>
 </body>
 
 </html>
