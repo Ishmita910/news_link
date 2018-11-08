@@ -1,11 +1,51 @@
 from flask import Flask,render_template
+import time
+import sys
+import logging
+import datetime as dt
+
+
+from watchdog.observers import Observer
+from watchdog.events import PatternMatchingEventHandler
+
+
+class MyHandler(PatternMatchingEventHandler):
+    patterns = ["*.txt"]
+
+    def process(self, event):
+        """
+        event.event_type
+            'modified' | 'created' | 'moved' |  'deleted'
+        event.is_directory
+            True | False
+        event.src_path
+            path/to/observed/file
+        """
+
+        print(event.src_path, event.event_type)  # print now only for debug
+
+    def on_modified(self, event):
+        self.process(event)
 
 
 app = Flask(__name__)
 @app.route('/check')
 def flaggingScript():
+    args = sys.argv[1:]
+    observer = Observer()
+    observer.schedule(MyHandler(), path=args[0] if args else '.')
+    observer.start()
 
-    return event.event_type
+    try:
+        while True:
+            time.sleep(1)
+            # print('checking')
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()
+
+
 
 
 @app.route('/')
@@ -16,61 +56,25 @@ def index():
         TP2M_content = TP2M_content.replace('\t', ' ')
         TP2M_content=TP2M_content.split()
 
-        TP2M_content_list1 = TP2M_content[1:8]
-        TP2M_content_list2 = TP2M_content[9:16]
-        TP2M_content_list3 = TP2M_content[17:24]
-        TP2M_content_list4 = TP2M_content[25:32]
+        TP2M_content_list1 = TP2M_content[0:7]
+        TP2M_content_list2 = TP2M_content[8:15]
+        TP2M_content_list3 = TP2M_content[16:23]
+        TP2M_content_list4 = TP2M_content[24:31]
 
 
-
-
-
-        html_TP2M_content = '''
-        <table class="table_top">
-          <tr>
-            <th class="cell_header_blue" colspan="6"><span style="font-size:larger;">_SET_</span>
-        	<a href="" class="refresh-log">(Refresh Now:</a> Auto-refresh interval is 1 hour)</th>
-          </tr>
-          <tr>
-            <th style="width: 35%" class="cell_header_blue">Simulation ID</th>
-            <th style="width:  5%" class="cell_header_blue">Move</th>
-            <th style="width: 10%" class="cell_header_blue">Action</th>
-            <th style="width: 15%" class="cell_header_blue">Date Uploaded</th>
-            <th style="width: 15%" class="cell_header_blue">I P</th>
-            <th style="width: 20%" class="cell_header_blue">Host</th>
-          </tr>
-        _ROWS_
-        </table>
-        '''
 
     with open('ReEDS_status.txt', 'r') as ReEDS_content:
         ReEDS_content=ReEDS_content.read().replace('\n', ' ')
         ReEDS_content = ReEDS_content.replace('\t', ' ')
         ReEDS_content=ReEDS_content.split()
 
-        ReEDS_content_list1=ReEDS_content[1:8]
-        ReEDS_content_list2 = ReEDS_content[9:16]
-        ReEDS_content_list3= ReEDS_content[17:24]
-        ReEDS_content_list4 = ReEDS_content[25:32]
-        html_ReEDS_content = '''
-        <table class="table_top">
-          <tr>
-            <th class="cell_header_blue" colspan="6"><span style="font-size:larger;">_SET_</span>
-        	<a href="" class="refresh-log">(Refresh Now:</a> Auto-refresh interval is 1 hour)</th>
-          </tr>
-          <tr>
-            <th style="width: 35%" class="cell_header_blue">Simulation ID</th>
-            <th style="width:  5%" class="cell_header_blue">Move</th>
-            <th style="width: 10%" class="cell_header_blue">Action</th>
-            <th style="width: 15%" class="cell_header_blue">Date Uploaded</th>
-            <th style="width: 15%" class="cell_header_blue">IP</th>
-            <th style="width: 20%" class="cell_header_blue">Host</th>
-          </tr>
-        _ROWS_
-        </table>
-        '''
+        ReEDS_content_list1=ReEDS_content[0:6]
+        ReEDS_content_list2 = ReEDS_content[8:14]
+        ReEDS_content_list3= ReEDS_content[16:22]
+        ReEDS_content_list4 = ReEDS_content[24:30]
 
-    return render_template('index.html',ReEDS_content_list1=ReEDS_content_list1,ReEDS_content_list2=ReEDS_content_list2,ReEDS_content_list3=ReEDS_content_list3,ReEDS_content_list4=ReEDS_content_list4,TP2M_content_list1=TP2M_content_list1,TP2M_content_list2=TP2M_content_list2,TP2M_content_list3=TP2M_content_list3,TP2M_content_list4=TP2M_content_list4,html_ReEDS_content=html_ReEDS_content)
+
+    return render_template('index.html',ReEDS_content_list1=ReEDS_content_list1,ReEDS_content_list2=ReEDS_content_list2,ReEDS_content_list3=ReEDS_content_list3,ReEDS_content_list4=ReEDS_content_list4,TP2M_content_list1=TP2M_content_list1,TP2M_content_list2=TP2M_content_list2,TP2M_content_list3=TP2M_content_list3,TP2M_content_list4=TP2M_content_list4)
 
 
 
