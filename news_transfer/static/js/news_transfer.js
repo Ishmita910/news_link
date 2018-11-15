@@ -7,10 +7,21 @@
 $(document).ready(function() {
   setInterval(function() {
     cache_clear()
-  }, 3000);
+  }, 300000);
 });
-
+// function create () {
+// // $.ajax({
+// // url:"check", //the page containing python script
+// // type: "post", //request type,
+// // dataType: 'json',
+// // data: {registration: "success", name: "xyz", email: "abc@gmail.com"},
+// // success:function(result){
+// window.location.reload(true);
+//       }
+//     });
+//    }md
 function cache_clear() {
+
   window.location.reload(true);
   // window.location.reload(); use this if you do not remove cache
 }

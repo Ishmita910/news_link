@@ -56,10 +56,10 @@ def index():
         TP2M_content = TP2M_content.replace('\t', ' ')
         TP2M_content=TP2M_content.split()
 
-        TP2M_content_list1 = TP2M_content[0:7]
-        TP2M_content_list2 = TP2M_content[8:15]
-        TP2M_content_list3 = TP2M_content[16:23]
-        TP2M_content_list4 = TP2M_content[24:31]
+        TP2M_content_list1 = TP2M_content[0:6]
+        TP2M_content_list2 = TP2M_content[8:14]
+        TP2M_content_list3 = TP2M_content[16:22]
+        TP2M_content_list4 = TP2M_content[24:30]
 
 
 
@@ -74,7 +74,7 @@ def index():
         ReEDS_content_list4 = ReEDS_content[24:30]
 
 
-    return render_template('index.html',ReEDS_content_list1=ReEDS_content_list1,ReEDS_content_list2=ReEDS_content_list2,ReEDS_content_list3=ReEDS_content_list3,ReEDS_content_list4=ReEDS_content_list4,TP2M_content_list1=TP2M_content_list1,TP2M_content_list2=TP2M_content_list2,TP2M_content_list3=TP2M_content_list3,TP2M_content_list4=TP2M_content_list4)
+    return render_template('index.html',ReEDS_content_list1=ReEDS_content_list1,ReEDS_content_list2=ReEDS_content_list2,ReEDS_content_list3=ReEDS_content_list3,ReEDS_content_list4=ReEDS_content_list4,TP2M_content_list1=TP2M_content_list1,TP2M_content_list2=TP2M_content_list2,TP2M_content_list3=TP2M_content_list3,TP2M_content_list4=TP2M_content_list4, ReEDS_content=ReEDS_content)
 
 
 
